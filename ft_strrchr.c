@@ -1,18 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xwang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/12 21:31:42 by xwang             #+#    #+#             */
-/*   Updated: 2018/11/04 18:20:54 by xwang            ###   ########.fr       */
+/*   Created: 2018/10/28 17:02:35 by xwang             #+#    #+#             */
+/*   Updated: 2018/10/28 17:23:26 by xwang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
+#include <string.h>
+
+char	*ft_strrchr(const char *s, int c)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
+	char	*ptr;
+	int		i;
+
+	ptr = (char *)s;
+	i = 0;
+	while (*ptr)
+	{
+		if (*ptr == (char)c)
+			i = 1;
+		ptr++;
+	}
+	if ((char)c == '\0' && *ptr == '\0')
+		return (ptr);
+	if (i == 0)
+		return (NULL);
+	while (*ptr != (char)c)
+		ptr--;
+	return (ptr);
 }

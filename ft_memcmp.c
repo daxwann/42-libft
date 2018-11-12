@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xwang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/12 21:31:42 by xwang             #+#    #+#             */
-/*   Updated: 2018/11/04 18:20:54 by xwang            ###   ########.fr       */
+/*   Created: 2018/10/26 21:22:58 by xwang             #+#    #+#             */
+/*   Updated: 2018/10/27 14:35:33 by xwang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
+#include <string.h>
+
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
+	unsigned char	*ptr1;
+	unsigned char	*ptr2;
+
+	ptr1 = (unsigned char*)s1;
+	ptr2 = (unsigned char*)s2;
+	while (n && *ptr1 == *ptr2)
+	{
+		ptr1++;
+		ptr2++;
+		n--;
+	}
+	if (n == 0)
+		return (0);
+	return (*ptr1 - *ptr2);
 }

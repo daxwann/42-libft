@@ -1,18 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   strlcat.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xwang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/12 21:31:42 by xwang             #+#    #+#             */
-/*   Updated: 2018/11/04 18:20:54 by xwang            ###   ########.fr       */
+/*   Created: 2018/10/27 15:44:02 by xwang             #+#    #+#             */
+/*   Updated: 2018/10/27 23:21:20 by xwang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
+#include "libft.h"
+
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
+	size_t i;
+	size_t len;
+	size_t k;
+
+	i = 0;
+	k = 0;
+	while (dst[i])
+		i++;
+	len = i;
+	while (src[k] && i + 1 < dstsize)
+		dst[i++] = src[k++];
+	while (src[k])
+		k++;
+	if (dstsize == 0 || len >= dstsize)
+		return (k + dstsize);
+	dst[i] = '\0';
+	return (k + len);
 }
