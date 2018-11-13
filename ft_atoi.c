@@ -6,15 +6,15 @@
 /*   By: xwang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/04 17:07:47 by xwang             #+#    #+#             */
-/*   Updated: 2018/11/04 19:08:55 by xwang            ###   ########.fr       */
+/*   Updated: 2018/11/12 15:14:54 by xwang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_atoi(const char *str)
 {
-	int nb;
-	int neg;
-	int	i;
+	unsigned long long int	nb;
+	int						neg;
+	int						i;
 
 	neg = 1;
 	nb = 0;
@@ -30,8 +30,10 @@ int	ft_atoi(const char *str)
 		i++;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		nb = (nb * 10) + (str[i] - '0');
+		nb = (nb * 10) + ((unsigned long long int)str[i] - '0');
+		if (nb > 9223372036854775807)
+			return (neg == -1 ? 0 : -1);
 		i++;
 	}
-	return (nb * neg);
+	return ((int)nb * neg);
 }
