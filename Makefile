@@ -47,10 +47,13 @@ SRCS = ft_isdigit.c		\
 	   ft_striter.c		\
 	   ft_striteri.c	\
 	   ft_strmap.c		\
+	   ft_strmapi.c		\
 
 OBJ = ${SRCS:.c=.o} 
 
 all: $(NAME)
+so: 
+	gcc -Wall -Werror -Wextra -o libft.so -I. $(SRCS) -shared
 $(NAME):
 	gcc -Wall -Werror -Wextra -c -I. $(SRCS)
 	ar rcs $(NAME) $(OBJ)
