@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmap.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xwang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/12 17:47:16 by xwang             #+#    #+#             */
-/*   Updated: 2018/11/25 14:38:27 by xwang            ###   ########.fr       */
+/*   Created: 2018/11/25 16:40:20 by xwang             #+#    #+#             */
+/*   Updated: 2018/11/25 17:48:37 by xwang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strmap(const char *s, char (*f)(char))
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*str;
-	int		i;
+	size_t	i;
+	size_t	j;
 
-	str = NULL;
 	i = 0;
-	if (s && *s && f && *f)
+	j = 0;
+	if (!s1 || !s2)
+		return (NULL);
+	str = (char *)malloc(sizeof(*str) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (str == NULL)
+		return (NULL);
+	while (s1[i])
 	{
-		str = (char *)malloc(sizeof(*str) * (ft_strlen(s) + 1));
-		if (str == NULL)
-			return (NULL);
-		while (s[i])
-		{
-			str[i] = (*f)(s[i]);
-			i++;
-		}
-		str[i] = '\0';
+		str[i] = s1[i];
+		i++;
 	}
+	while (s2[j])
+		str[i++] = s2[j++];
+	str[i] = '\0';
 	return (str);
 }
