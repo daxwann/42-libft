@@ -48,6 +48,7 @@ SRCS = ft_isdigit.c		\
 	   ft_striteri.c	\
 	   ft_strmap.c		\
 	   ft_strmapi.c		\
+	   ft_itoa.c		\
 
 OBJ = ${SRCS:.c=.o} 
 
