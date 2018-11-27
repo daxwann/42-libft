@@ -1,4 +1,5 @@
 #include <string.h>
+#include <stdlib.h>
 
 int	find_digits(unsigned int num)
 {
@@ -36,5 +37,8 @@ char	*ft_itoa(int n)
 		arr[len--] = num % 10 + '0';
 		num /= 10;
 	}
-	arr[len] = num;
+	arr[len] = num + '0';
+	if (len != 0)
+		arr[--len] = '-';
+	return (arr);
 }
