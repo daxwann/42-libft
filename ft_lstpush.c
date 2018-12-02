@@ -1,43 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstpop.c                                        :+:      :+:    :+:   */
+/*   ft_lstpush.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xwang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 13:03:53 by xwang             #+#    #+#             */
-/*   Updated: 2018/12/01 17:46:03 by xwang            ###   ########.fr       */
+/*   Created: 2018/12/01 16:46:34 by xwang             #+#    #+#             */
+/*   Updated: 2018/12/01 17:19:45 by xwang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void	*ft_lstpop(t_list **alst)
+void	ft_lstpush(t_list **alst, t_list *new_ele)
 {
-	t_list	*list;
-	t_list	*top;
-	void	*popped;
+	t_list *top;
 
-	if (!alst || !(*alst))
-		return (NULL);
-	list = *alst;
-	top = list->next;
-	while (top)
-	{
-		if (!(top->next))
-		{
-			popped = top->content;
-			free(top);
-			top = NULL;
-			list->next = NULL;
-			return (popped);
-		}
+	if (!alst || !new_ele)
+		return ;
+	top = *alst;
+	while (top->next)
 		top = top->next;
-		list = list->next;
-	}
-	popped = (*alst)->content;
-	free(*alst);
-	*alst = NULL;
-	return (popped);
+	top->next = new_ele;
 }

@@ -1,43 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstpop.c                                        :+:      :+:    :+:   */
+/*   ft_lstcount.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xwang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 13:03:53 by xwang             #+#    #+#             */
-/*   Updated: 2018/12/01 17:46:03 by xwang            ###   ########.fr       */
+/*   Created: 2018/12/01 18:09:37 by xwang             #+#    #+#             */
+/*   Updated: 2018/12/01 18:12:10 by xwang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void	*ft_lstpop(t_list **alst)
+size_t	ft_lstcount(t_list *alst)
 {
-	t_list	*list;
-	t_list	*top;
-	void	*popped;
+	size_t count;
 
-	if (!alst || !(*alst))
-		return (NULL);
-	list = *alst;
-	top = list->next;
-	while (top)
+	count = 0;
+	while (alst)
 	{
-		if (!(top->next))
-		{
-			popped = top->content;
-			free(top);
-			top = NULL;
-			list->next = NULL;
-			return (popped);
-		}
-		top = top->next;
-		list = list->next;
+		alst = alst->next;
+		count++;
 	}
-	popped = (*alst)->content;
-	free(*alst);
-	*alst = NULL;
-	return (popped);
+	return (count);
 }

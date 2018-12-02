@@ -1,43 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstpop.c                                        :+:      :+:    :+:   */
+/*   ft_lstreverse.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xwang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 13:03:53 by xwang             #+#    #+#             */
-/*   Updated: 2018/12/01 17:46:03 by xwang            ###   ########.fr       */
+/*   Created: 2018/12/01 18:30:35 by xwang             #+#    #+#             */
+/*   Updated: 2018/12/01 18:48:54 by xwang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void	*ft_lstpop(t_list **alst)
+t_list	*ft_lstreverse(t_list *alst)
 {
-	t_list	*list;
-	t_list	*top;
-	void	*popped;
+	t_list *reverse;
+	t_list *new;
 
-	if (!alst || !(*alst))
-		return (NULL);
-	list = *alst;
-	top = list->next;
-	while (top)
+	reverse = NULL;
+	while (alst)
 	{
-		if (!(top->next))
-		{
-			popped = top->content;
-			free(top);
-			top = NULL;
-			list->next = NULL;
-			return (popped);
-		}
-		top = top->next;
-		list = list->next;
+		new = ft_lstnew(alst->content, alst->content_size);
+		ft_lstadd(&reverse, new);
+		alst = alst->next;
 	}
-	popped = (*alst)->content;
-	free(*alst);
-	*alst = NULL;
-	return (popped);
+	return (reverse);
 }

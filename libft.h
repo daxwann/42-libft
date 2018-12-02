@@ -6,7 +6,7 @@
 /*   By: xwang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 23:18:42 by xwang             #+#    #+#             */
-/*   Updated: 2018/11/30 22:17:14 by xwang            ###   ########.fr       */
+/*   Updated: 2018/12/01 18:42:22 by xwang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,10 @@ void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *new_ele);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+void				*ft_lstpop(t_list **alst);
+void				ft_lstpush(t_list **alst, t_list *new_ele);
+void				*ft_lstshift(t_list **alst);
+size_t				ft_lstcount(t_list *alst);
+t_list				*ft_lstreverse(t_list *alst);
 
 #endif
