@@ -6,7 +6,7 @@
 #    By: xwang <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/12 23:29:54 by xwang             #+#    #+#              #
-#    Updated: 2018/11/12 18:49:08 by xwang            ###   ########.fr        #
+#    Updated: 2018/12/01 18:41:53 by xwang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,8 @@ SRCS = ft_isdigit.c		\
 	   ft_isalnum.c		\
 	   ft_isascii.c		\
 	   ft_isprint.c		\
+	   ft_toupper.c		\
+	   ft_tolower.c		\
 	   ft_memalloc.c	\
 	   ft_memdel.c		\
 	   ft_strnew.c		\
@@ -48,13 +50,36 @@ SRCS = ft_isdigit.c		\
 	   ft_striteri.c	\
 	   ft_strmap.c		\
 	   ft_strmapi.c		\
+	   ft_strequ.c		\
+	   ft_strnequ.c		\
+	   ft_strsub.c		\
+	   ft_strjoin.c		\
+	   ft_strtrim.c		\
+	   ft_strsplit.c	\
 	   ft_itoa.c		\
+	   ft_putchar.c		\
+	   ft_putstr.c		\
+	   ft_putendl.c		\
+	   ft_putnbr.c		\
+	   ft_putchar_fd.c	\
+	   ft_putstr_fd.c	\
+	   ft_putendl_fd.c	\
+	   ft_putnbr_fd.c	\
+	   ft_lstnew.c		\
+	   ft_lstdelone.c	\
+	   ft_lstdel.c		\
+	   ft_lstadd.c		\
+	   ft_lstiter.c		\
+	   ft_lstmap.c		\
+	   ft_lstpop.c		\
+	   ft_lstpush.c		\
+	   ft_lstshift.c	\
+	   ft_lstcount.c	\
+	   ft_lstreverse.c	\
 
 OBJ = ${SRCS:.c=.o} 
 
 all: $(NAME)
-so: 
-	gcc -Wall -Werror -Wextra -o libft.so -I. $(SRCS) -shared
 $(NAME):
 	gcc -Wall -Werror -Wextra -c -I. $(SRCS)
 	ar rcs $(NAME) $(OBJ)
