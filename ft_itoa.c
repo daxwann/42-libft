@@ -6,14 +6,14 @@
 /*   By: xwang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 13:59:26 by xwang             #+#    #+#             */
-/*   Updated: 2018/11/28 14:19:07 by xwang            ###   ########.fr       */
+/*   Updated: 2018/12/02 19:00:22 by xwang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 #include <stdlib.h>
 
-static int	find_digits(unsigned int num)
+static int	count_digits(unsigned int num)
 {
 	int len;
 
@@ -40,17 +40,17 @@ char		*ft_itoa(int n)
 	}
 	else
 		num = (unsigned int)(n);
-	len += find_digits(num);
-	if (!(arr = (char *)malloc(sizeof(*arr) * (len + 1))))
+	len += count_digits(num);
+	if (!(arr = ft_strnew(len)))
 		return (NULL);
-	arr[len--] = '\0';
+	len--;
 	while (num / 10 != 0)
 	{
 		arr[len--] = num % 10 + '0';
 		num /= 10;
 	}
 	arr[len] = num + '0';
-	if (len != 0)
-		arr[--len] = '-';
+	if (n < 0)
+		arr[0] = '-';
 	return (arr);
 }

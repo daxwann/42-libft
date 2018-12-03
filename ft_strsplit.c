@@ -6,11 +6,12 @@
 /*   By: xwang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 19:38:38 by xwang             #+#    #+#             */
-/*   Updated: 2018/11/28 14:19:37 by xwang            ###   ########.fr       */
+/*   Updated: 2018/12/02 19:58:22 by xwang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "libft.h"
 
 static int	word_count(char const *str, char c)
 {
@@ -21,6 +22,8 @@ static int	word_count(char const *str, char c)
 	i = 0;
 	count = 0;
 	new = 1;
+	if (!str || !c)
+		return (0);
 	while (str[i] != '\0')
 	{
 		if ((str[i] != c) && new == 1)
@@ -35,25 +38,14 @@ static int	word_count(char const *str, char c)
 	return (count);
 }
 
-static char	*split_word(const char *str, char c)
+static char	ft_wlen(const char *str, char c)
 {
-	char	*word;
-	int		i;
+	int	len;
 
-	i = 0;
-	while (str[i] != c)
-		i++;
-	if (!(word = (char *)malloc(sizeof(*word) * (i + 1))))
-		return (NULL);
-	i = 0;
-	while (*str != c)
-	{
-		word[i] = *str;
-		str++;
-		i++;
-	}
-	word[i] = '\0';
-	return (word);
+	len = 0;
+	while (str[len] && str[len] != c)
+		len++;
+	return (len);
 }
 
 char		**ft_strsplit(char const *str, char c)
@@ -64,19 +56,18 @@ char		**ft_strsplit(char const *str, char c)
 
 	if (!str)
 		return (NULL);
-	len = word_count(str, c) + 1;
-	if (!(words = (char **)malloc(sizeof(*words) * len)))
+	len = word_count(str, c);
+	if (!(words = (char **)malloc(sizeof(*words) * (len + 1))))
 		return (NULL);
 	i = 0;
-	while (i < len - 1)
+	while (i < len)
 	{
 		while (*str == c && *str != '\0')
 			str++;
-		words[i] = split_word(str, c);
-		while (*str != c)
-			str++;
+		words[i] = ft_strsub((const char*)str, 0, ft_wlen((const char*)str, c));
+		str += ft_wlen((const char*)str, c);
 		i++;
 	}
-	words[len - 1] = 0;
+	words[i] = 0;
 	return (words);
 }

@@ -6,7 +6,7 @@
 /*   By: xwang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 16:07:06 by xwang             #+#    #+#             */
-/*   Updated: 2018/11/12 16:23:59 by xwang            ###   ########.fr       */
+/*   Updated: 2018/12/02 17:15:04 by xwang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 
 char	*ft_strnew(size_t size)
 {
-	char *str;
+	char	*str;
+	size_t	i;
 
-	str = (char *)malloc(sizeof(char) * (size + 1));
-	if (!str)
+	i = 0;
+	if (!(str = (char *)malloc(sizeof(char) * (size + 1))))
 		return (NULL);
-	ft_bzero(str, size + 1);
+	while (i < size)
+		str[i++] = '\0';
+	str[i] = '\0';
 	return (str);
 }
